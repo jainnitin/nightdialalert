@@ -16,7 +16,7 @@
     <!-- Used to lookup a Contact -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <!-- Android 3.x Honeycomb and beyond -->
+    <!-- Android 4 IceCreamSandwich and beyond -->
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="23" />
