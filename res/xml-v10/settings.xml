@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="prefEnabled"
+        android:title="@string/pref_enable_application" />
+
+    <PreferenceCategory
+        android:key="prefSettings"
+        android:title="Sleep Settings" >
+        <com.nightdialalert.view.TimePreference
+            android:defaultValue="22:00"
+            android:key="prefSleepTime"
+            android:title="Sleeping Time" />
+        <com.nightdialalert.view.TimePreference
+            android:defaultValue="07:00"
+            android:key="prefWakeTime"
+            android:title="Wakeup Time" />
+    </PreferenceCategory>
+
+    <!--
+         <PreferenceCategory android:title="Supported Countries" >
+        <ListPreference
+            android:key="prefSupportedCountries"
+            android:entries="@array/syncFrequency"
+            android:entryValues="@array/syncFrequencyValues"
+            android:title="Country List" />
+    </PreferenceCategory>
+    -->
+
+    <PreferenceCategory android:title="About" >
+        <PreferenceScreen
+            android:key="prefPrivacy"
+            android:summary="Click here to see our privacy policy"
+            android:title="Privacy policy" >
+<!--             <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.google.com" /> -->
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="prefDisclaimer"
+            android:summary="Click here to see our legal disclaimer"
+            android:title="Legal disclaimer" >
+            <!-- <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.google.com" /> -->
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Send Feedback"
+            android:summary="Provide us your suggestions or complaints"
+             >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:nightdialalert+feedback@gmail.com?subject=Feedback on Night Dial Alert" >
+
+                <!-- <extra android:name="android.intent.extra.TEXT" android:value="This is a test mail message" /> -->
+            </intent>
+        </PreferenceScreen>
+
+        <Preference
+            android:key="prefVersion"
+            android:persistent="false"
+            android:summary="1.0.0"
+            android:title="Version" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

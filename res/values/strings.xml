@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Night Dial Alert</string>
+    <string name="confirm_text">Are you sure you want to call ?</string>
+    <string name="contact_name">%s</string>
+    <string name="local_time_text">Current Time in %s is</string>
+    <string name="destination_time">%s</string>
+    <string name="action_settings">Settings</string>
+    <string name="set">Set</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="call">Call</string>
+    <string name="pref_enable_application">Enable Monitoring</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy">We take your privacy seriously and do not collect, share or resell any personal information such as phone-numbers, contact-names etc. If you have any concerns or questions, please contact us at nightdialalert@gmail.com</string>
+    <string name="legal_disclaimer_title">Disclaimer</string>
+    <string name="legal_disclaimer">By using this application, you agree that you will not hold the author liable for any damages that you might incur
+as a result of this usage.</string>
+
+</resources>
