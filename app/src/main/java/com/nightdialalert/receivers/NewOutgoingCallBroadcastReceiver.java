@@ -17,7 +17,6 @@ package com.nightdialalert.receivers;
 
 import java.util.List;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.nightdialalert.utils.DestinationTimeCalculator;
 import com.nightdialalert.view.AlertDialogActivity;
 
@@ -32,8 +31,6 @@ public class NewOutgoingCallBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // init analytics
-        EasyTracker.getInstance(context);
 
         // intercept call
         if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {

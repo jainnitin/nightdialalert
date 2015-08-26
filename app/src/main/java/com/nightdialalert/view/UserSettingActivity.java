@@ -36,7 +36,9 @@ import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.Log;
 
-import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.nightdialalert.NightDialAlertApplication;
 import com.nightdialalert.receivers.BroadcastReceiverManager;
 import com.nightdialalert.receivers.NewOutgoingCallBroadcastReceiver;
 import com.nightdialalert.R;
@@ -57,12 +59,18 @@ public class UserSettingActivity extends PreferenceActivity {
     private PreferenceScreen mDisclaimerPref;
     private PreferenceScreen mPrivacyPref;
     private Preference mVersion;
+    private Tracker mTracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "BuildVersion: " + Build.VERSION.SDK_INT);
         mContext = this;
+
+        // Obtain the shared Tracker instance.
+        NightDialAlertApplication application = (NightDialAlertApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
         addPreferencesFromResource(R.xml.settings);
 
         mReceiverComponent = new ComponentName(mContext, NewOutgoingCallBroadcastReceiver.class);
@@ -97,13 +105,16 @@ public class UserSettingActivity extends PreferenceActivity {
     @Override
     public void onStart() {
         super.onStart();
-        EasyTracker.getInstance(mContext).activityStart(this);
+        mTracker.setScreenName("SettingsActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        //EasyTracker.getInstance(mContext).activityStart(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EasyTracker.getInstance(mContext).activityStop(this);
+        //EasyTracker.getInstance(mContext).activityStop(this);
     }
 
     private void initPrivacyPreferences() {

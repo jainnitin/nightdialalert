@@ -22,11 +22,13 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
-import com.google.analytics.tracking.android.EasyTracker;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.nightdialalert.NightDialAlertApplication;
 import com.nightdialalert.R;
 import com.nightdialalert.receivers.BroadcastReceiverManager;
 import com.nightdialalert.receivers.NewOutgoingCallBroadcastReceiver;
@@ -41,8 +43,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Bundle;
@@ -60,6 +60,7 @@ public class AlertDialogActivity extends Activity {
     private static final String TAG = AlertDialogActivity.class.getSimpleName();
     private Context mContext;
     private ComponentName mReceiverComponent;
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,10 @@ public class AlertDialogActivity extends Activity {
 
         mContext = this;
         mReceiverComponent = new ComponentName(mContext, NewOutgoingCallBroadcastReceiver.class);
+
+        // Obtain the shared Tracker instance.
+        NightDialAlertApplication application = (NightDialAlertApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         // Parse Arguments
         String phoneNumber = getIntent().getStringExtra("PHONE_NUMBER");
@@ -105,13 +110,13 @@ public class AlertDialogActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        EasyTracker.getInstance(mContext).activityStart(this);
+        mTracker.setScreenName("SettingsActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EasyTracker.getInstance(mContext).activityStop(this);
     }
 
     @Override
